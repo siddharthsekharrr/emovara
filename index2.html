@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Emovara - Gifts that feel. Emotions that stay.</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdf6f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #e91e63;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .tagline { font-size: 1.2rem; }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      display: none;
+    }
+    .login {
+      max-width: 400px;
+      margin: 80px auto;
+      text-align: center;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #c2185b;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .output {
+      background: #fff0f5;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Emovara</h1>
+    <p class="tagline">Gifts that feel. Emotions that stay.</p>
+  </header>
+
+  <!-- Password Login -->
+  <div class="login" id="login">
+    <h2>Enter Password</h2>
+    <input type="password" id="passwordInput" placeholder="Password"/>
+    <button onclick="checkPassword()">Unlock</button>
+    <p id="wrong" style="color:red; display:none;">Wrong password. Try again.</p>
+  </div>
+
+  <!-- Main App -->
+  <div class="container" id="mainApp">
+    <h2>Create Your Love Letter</h2>
+    <form id="giftForm">
+      <input type="text" id="name" placeholder="Recipient's Name" required>
+      <input type="text" id="occasion" placeholder="Occasion (e.g. Birthday, Just Because)">
+      <textarea id="feelings" rows="4" placeholder="Write your feelings here..." required></textarea>
+      <button type="submit">Generate Love Letter</button>
+    </form>
+    <div id="output" class="output" style="display:none;"></div>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      if (input === "shivranu") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("mainApp").style.display = "block";
+      } else {
+        document.getElementById("wrong").style.display = "block";
+      }
+    }
+
+    const form = document.getElementById('giftForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const occasion = document.getElementById('occasion').value;
+      const feelings = document.getElementById('feelings').value;
+
+      const message = `Dear ${name},\\n\\nOn this beautiful ${occasion || 'day'}, I just wanted to remind you how deeply you're loved.\\n\\n${feelings}\\n\\nWith all my heart,\\nYours always.`;
+
+      const output = document.getElementById('output');
+      output.style.display = 'block';
+      output.textContent = message;
+    });
+  </script>
+</body>
+</html>
